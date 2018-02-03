@@ -6,53 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.turbo.ashish.hexon.PhoneLogin">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="204dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09">
-
-        <EditText
-            android:id="@+id/idGetNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="Phone"
-            android:inputType="phone"
-            android:paddingStart="19dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.279"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.407"
-            tools:ignore="RtlSymmetry" />
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/idOTPBtn"
-        android:layout_width="83dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="OTP"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout3" />
     <LinearLayout
         android:layout_width="299dp"
         android:layout_height="69dp"
@@ -63,8 +16,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.784">
 
         <EditText
             android:id="@+id/idOTP1"
@@ -72,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:maxLength="1"
             android:inputType="number"
-            android:textAlignment="center"/>
+            android:maxLength="1"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/idOTP2"
@@ -82,9 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:maxLength="1"
             android:inputType="number"
-            android:textAlignment="center"/>
+            android:maxLength="1"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/idOTP3"
@@ -92,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:maxLength="1"
             android:inputType="number"
+            android:maxLength="1"
             android:textAlignment="center" />
 
         <EditText
@@ -102,9 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:maxLength="1"
             android:inputType="number"
-            android:textAlignment="center"/>
+            android:maxLength="1"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/idOTP5"
@@ -112,9 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:maxLength="1"
             android:inputType="number"
-            android:textAlignment="center"/>
+            android:maxLength="1"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/idOTP6"
@@ -122,10 +77,139 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:maxLength="1"
             android:inputType="number"
-            android:textAlignment="center"/>
+            android:maxLength="1"
+            android:textAlignment="center" />
     </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="179dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.338">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:paddingTop="10dp"
+                android:text="Choose your country"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="India"
+                android:textAllCaps="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="69dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="20dp"
+                    android:text="+91"
+                    android:textSize="17sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInputLayout3"
+                    android:layout_width="193dp"
+                    android:layout_height="55dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.551">
+
+                    <EditText
+                        android:id="@+id/idGetNumber"
+                        android:layout_width="174dp"
+                        android:layout_height="38dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:ems="10"
+                        android:hint="Phone"
+                        android:inputType="phone"
+                        android:paddingStart="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.279"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.407"
+                        tools:ignore="RtlSymmetry" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/idOTPBtn"
+                    android:layout_width="83dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+
+                    android:layout_weight="1"
+                    android:text="OTP"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
+                    app:layout_constraintTop_toTopOf="@+id/textInputLayout3" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp"
+            android:text="Hexon Messenger will send a one time password through SMS to verify your phone number.  Carrier SMS charges may apply"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+
+    </android.support.v7.widget.CardView>
 
 
 </android.support.constraint.ConstraintLayout>

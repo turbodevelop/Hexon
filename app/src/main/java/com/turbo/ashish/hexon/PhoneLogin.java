@@ -111,6 +111,7 @@ public class PhoneLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
 
+        setTitle("Verify your Phone number"); //Set Title Of Activity
         CLV = new CatLoadingView();
         CLV.setCancelable(false);
         Log.d("Log-1",getMacAddress()); // Get MacAddress
@@ -135,8 +136,6 @@ public class PhoneLogin extends AppCompatActivity {
                 }
             }
         });
-
-
 
         refOTP1.addTextChangedListener(new TextWatcher() {
             @Override
