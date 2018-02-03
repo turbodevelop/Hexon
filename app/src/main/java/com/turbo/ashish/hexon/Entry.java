@@ -44,6 +44,12 @@ public class Entry extends AppCompatActivity {
                 startActivity(new Intent(Entry.this,Signup.class));
             }
         });
+        findViewById(R.id.idPhoneLogin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Entry.this,PhoneLogin.class));
+            }
+        });
     }
 }
 class MyFirebaseIdServices extends FirebaseInstanceIdService {

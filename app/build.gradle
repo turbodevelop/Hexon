@@ -38,5 +38,6 @@ dependencies {
     //Material Designing
     compile 'com.android.support:design:26.1.0' //Android Material Designing Support
     compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1' //Android CatLoadingView
+    compile 'com.orhanobut:dialogplus:1.11@aar' //Dialogplus
 }
 apply plugin: 'com.google.gms.google-services'

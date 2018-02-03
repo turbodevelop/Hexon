@@ -5,8 +5,8 @@
     android:id="@+id/idCloutEmailAutho"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.turbo.ashish.hexon.emailLogin.EmailAuth"
-    android:background="@drawable/bag_01">
+    android:background="@drawable/bag_01"
+    tools:context="com.turbo.ashish.hexon.emailLogin.EmailAuth">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -51,10 +51,10 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.611"
+        app:layout_constraintVertical_bias="0.667"
         tools:ignore="MissingConstraints">
 
         <EditText
@@ -109,13 +109,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.621"
-        app:srcCompat="@drawable/tweet" android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/tweet" />
 
 
 </android.support.constraint.ConstraintLayout>
