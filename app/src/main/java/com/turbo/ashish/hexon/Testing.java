@@ -2,6 +2,7 @@ package com.turbo.ashish.hexon;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,14 +33,7 @@ public class Testing extends AppCompatActivity {
         findViewById(R.id.idClick).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                DialogPlus dialog = DialogPlus.newDialog(Testing.this)
-                        .setContentHolder(new ViewHolder(R.layout.custom_otp_dialog))
-                        .setContentHeight(150)
-                        .setPadding(100,70,0,-30)
-                        .setMargin(18,0,18,0)
-                        .setExpanded(true).setGravity(Gravity.TOP)
-                        .create();
-                dialog.show();
+
             }
         });
     }
