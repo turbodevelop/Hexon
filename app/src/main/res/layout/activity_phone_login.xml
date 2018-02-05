@@ -6,95 +6,72 @@
     android:layout_height="match_parent"
     tools:context="com.turbo.ashish.hexon.PhoneLogin">
 
-    <LinearLayout
-        android:layout_width="299dp"
-        android:layout_height="69dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784">
-
-        <EditText
-            android:id="@+id/idOTP1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/idOTP2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/idOTP3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/idOTP4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/idOTP5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/idOTP6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textAlignment="center" />
-    </LinearLayout>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="179dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/idPhoneLoginActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="412dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338">
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/custColViolat"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/verify_your_phone_number" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/idAckCV"
+        android:layout_width="0dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="360dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idPhoneLoginActionBar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/phone_login_verification_acknowledgement"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/idcountryCV"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idAckCV"
+        app:layout_constraintVertical_bias="0.012">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
                 android:paddingTop="10dp"
-                android:text="Choose your country"
+                android:text="@string/phone_login_choose_country"
                 android:textAlignment="center"
                 android:textColor="#000000" />
 
@@ -114,7 +91,9 @@
                 android:id="@+id/idChooseCountryBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="India"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/phone_login_india"
                 android:textAllCaps="false" />
 
             <LinearLayout
@@ -127,14 +106,16 @@
                     android:layout_width="69dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:paddingLeft="18dp"
-                    android:paddingTop="20dp"
-                    android:textSize="17sp" />
+                    android:paddingStart="18dp"
+                    android:paddingTop="23dp"
+                    android:textSize="17sp"
+                    tools:ignore="RtlSymmetry" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textInputLayout3"
                     android:layout_width="193dp"
                     android:layout_height="55dp"
+
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -149,8 +130,9 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:background="@color/custColtransparante"
                         android:ems="10"
-                        android:hint="Phone"
+                        android:hint="@string/phone"
                         android:inputType="phone"
                         android:paddingStart="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +152,7 @@
                     android:layout_marginEnd="16dp"
 
                     android:layout_weight="1"
-                    android:text="OTP"
+                    android:text="@string/otp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
@@ -182,32 +164,132 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="86dp"
+        android:id="@+id/idOTPCV"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idcountryCV"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="15dp"
-            android:text="Hexon Messenger will send a one time password through SMS to verify your phone number.  Carrier SMS charges may apply"
-            android:textAlignment="gravity"
-            android:textSize="15sp" />
+            android:orientation="vertical">
 
+            <Switch
+                android:id="@+id/idAutoOTPswitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/auto_otp_switch"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="#17c112"
+                android:textAlignment="viewEnd"
+                android:paddingEnd="20dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idOTPCV"
+                tools:ignore="RtlSymmetry" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.919">
+
+                <EditText
+                    android:id="@+id/idOTP1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/idOTP2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/idOTP3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/idOTP4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/idOTP5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/idOTP6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    tools:ignore="LabelFor" />
+            </LinearLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
 

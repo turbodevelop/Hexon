@@ -1,26 +1,31 @@
 package com.turbo.ashish.hexon;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,17 +36,15 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ListHolder;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.roger.catloadinglibrary.CatLoadingView;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneLogin extends AppCompatActivity {
@@ -59,6 +62,11 @@ public class PhoneLogin extends AppCompatActivity {
     private Button refChooseCountryBtn;
     private int tmp1 = -1, tmp2 = -1;
     private TextView refCountryCodeShow;
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
+    private String getBroadcastSMS_OTP = new String();
+    private TextView refOutOTPtv;
+    private boolean autoOtpswitchStatus;
+    private EditText refOTP1, refOTP2, refOTP3, refOTP4, refOTP5, refOTP6;
     //Functions
     private void setupVerificationCallback(){
         CLV.show(getSupportFragmentManager(),"");
@@ -138,11 +146,35 @@ public class PhoneLogin extends AppCompatActivity {
             }
         }
     }
+    private boolean checkAndRequestPermissions(){
+        int permissionSendMessage = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS);
+        int receveSMS = ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECEIVE_SMS);
+        int readSMS = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (receveSMS != PackageManager.PERMISSION_GRANTED){
+            listPermissionsNeeded.add(android.Manifest.permission.RECEIVE_SMS);
+        }
+        if(readSMS != PackageManager.PERMISSION_GRANTED){
+            listPermissionsNeeded.add(android.Manifest.permission.READ_SMS);
+        }
+        if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.SEND_SMS);
+        }
+        if (!listPermissionsNeeded.isEmpty()){
+            ActivityCompat.requestPermissions(this,listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),
+                    REQUEST_ID_MULTIPLE_PERMISSIONS);
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
+
+        if (checkAndRequestPermissions()) {
+        }
+
 
         setTitle("Verify your Phone number"); //Set Title Of Activity
         CLV = new CatLoadingView();
@@ -151,9 +183,9 @@ public class PhoneLogin extends AppCompatActivity {
         refGetNumber = findViewById(R.id.idGetNumber);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        final EditText refOTP1 = findViewById(R.id.idOTP1), refOTP2 = findViewById(R.id.idOTP2),
-                refOTP3 = findViewById(R.id.idOTP3), refOTP4 = findViewById(R.id.idOTP4),
-                refOTP5  = findViewById(R.id.idOTP5), refOTP6  = findViewById(R.id.idOTP6);
+        refOTP1 = findViewById(R.id.idOTP1); refOTP2 = findViewById(R.id.idOTP2);
+        refOTP3 = findViewById(R.id.idOTP3); refOTP4 = findViewById(R.id.idOTP4);
+        refOTP5  = findViewById(R.id.idOTP5); refOTP6  = findViewById(R.id.idOTP6);
 
         findViewById(R.id.idOTPBtn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,6 +306,75 @@ public class PhoneLogin extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
+        refOutOTPtv = (TextView) findViewById(R.id.textView4);
 
+        final Switch refautoOtpSwitch = findViewById(R.id.idAutoOTPswitch);
+        refautoOtpSwitch.setTextColor(Color.RED);
+        refautoOtpSwitch.setChecked(true);
+        if (refautoOtpSwitch.isChecked()){
+            refautoOtpSwitch.setText("Auto OTP Detection");
+            refautoOtpSwitch.setTextColor(Color.BLACK);
+            autoOtpswitchStatus = true;
+        }
+        refautoOtpSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (refautoOtpSwitch.isChecked()){
+                    refautoOtpSwitch.setText("Auto OTP Detection");
+                    refautoOtpSwitch.setTextColor(Color.BLACK);
+                    autoOtpswitchStatus = true;
+
+                }else {
+                    refautoOtpSwitch.setText("Auto OTP Detection Disabled");
+                    refautoOtpSwitch.setTextColor(Color.RED);
+                    refOutOTPtv.setText("");
+                    autoOtpswitchStatus = false;
+                }
+            }
+        });
+    }
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equalsIgnoreCase("otp")) {
+                final String message = intent.getStringExtra("message");
+                char[] getOTP = message.toCharArray();
+                for (int i=0; i<getOTP.length; i++){
+                    if (getOTP[i] == '0' || getOTP[i] == '1' || getOTP[i] == '2' || getOTP[i] == '3' || getOTP[i] == '4' ||
+                            getOTP[i] == '5' || getOTP[i] == '6' || getOTP[i] == '7' || getOTP[i] == '8' ||
+                            getOTP[i] == '9' ){
+                        getBroadcastSMS_OTP = getBroadcastSMS_OTP + getOTP[i];
+                    }
+                }
+                if (autoOtpswitchStatus){
+                    refOutOTPtv.setText("OTP Detected : " + getBroadcastSMS_OTP);
+                    String tempOTP = getBroadcastSMS_OTP;
+                    char[] setOTP = tempOTP.toCharArray();
+                    refOTP1.setText(String.valueOf(setOTP[0]));
+                    refOTP2.setText(String.valueOf(setOTP[1]));
+                    refOTP3.setText(String.valueOf(setOTP[2]));
+                    refOTP4.setText(String.valueOf(setOTP[3]));
+                    refOTP5.setText(String.valueOf(setOTP[4]));
+                    Toast toast = new Toast(getApplicationContext());
+                    
+                    Toast.makeText(PhoneLogin.this,"Enter OTP Last Digit",Toast.LENGTH_LONG);
+                }else {
+
+                }
+            }
+        }
+    };
+    @Override
+    public void onResume() {
+        LocalBroadcastManager.getInstance(this).
+                registerReceiver(receiver, new IntentFilter("otp"));
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 }

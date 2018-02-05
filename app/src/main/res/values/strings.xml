@@ -5,6 +5,15 @@
     <string name="sign_in">Sign In</string>
     <string name="message">Message</string>
     <string name="todo">TODO</string>
+    <string name="verify_your_phone_number">Verify your Phone Number</string>
+
+    <string name="phone_login_verification_acknowledgement">Hexon Messenger will send an OTP through SMS to verify your phone number. Carrier SMS charges may apply</string>
+    <string name="phone_login_choose_country">Choose your Country</string>
+    <string name="phone_login_india">India</string>
+    <string name="phone">Phone Number</string>
+    <string name="otp">OTP</string>
+    <string name="auto_otp_switch">Auto OTP Detection Disabled</string>
+
     <item name="dialog_editext" type="id" />
     <item name="visible" type="id" />
     <item name="masked" type="id" />
