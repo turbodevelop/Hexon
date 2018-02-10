@@ -35,9 +35,11 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:11.8.0' //Firebase Crash Report
     compile 'com.google.firebase:firebase-auth:11.8.0' //Firebase Authentication
     compile 'com.google.firebase:firebase-messaging:11.8.0' //Firebase Cloud Messaging
+    compile 'com.google.firebase:firebase-storage:11.8.0' //Firebase Storage
     //Material Designing
     compile 'com.android.support:design:26.1.0' //Android Material Designing Support
     compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1' //Android CatLoadingView
     compile 'com.orhanobut:dialogplus:1.11@aar' //Dialogplus
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.6.+' //Image Crop Library
 }
 apply plugin: 'com.google.gms.google-services'

@@ -1,12 +1,16 @@
 package com.turbo.ashish.hexon.chat;
+import android.annotation.SuppressLint;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -18,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.turbo.ashish.hexon.R;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import android.support.v7.app.ActionBar;
 
@@ -28,7 +33,9 @@ public class chatRoom extends AppCompatActivity {
     TextView receviedMsg;
     EditText sendMsg;
     ScrollView scrollView;
+    private ListView lv;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +52,7 @@ public class chatRoom extends AppCompatActivity {
 
         setTitle(roomName);
 
-        rootRoomName = FirebaseDatabase.getInstance().getReference().getRoot().child(roomName);
+        rootRoomName = FirebaseDatabase.getInstance().getReference().getRoot().child("Groups").child(roomName);
 
         findViewById(R.id.idSendMsgBtn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +63,7 @@ public class chatRoom extends AppCompatActivity {
                 map.put("name", userName);
                 map.put("message", sendMsg.getText().toString());
                 childRoot.updateChildren(map);
+                scrollView.fullScroll(View.FOCUS_DOWN);
             }
         });
 
@@ -88,11 +96,15 @@ public class chatRoom extends AppCompatActivity {
 
     }
     private String chatUserName, chatMessage;
+
     //Load Message
+    private void voidSync(){
+
+    }
     private void update_message(DataSnapshot dataSnapshot) {
         chatUserName = (String) dataSnapshot.child("name").getValue();
         chatMessage = (String) dataSnapshot.child("message").getValue();
-        receviedMsg.append(chatUserName + "\n" + chatMessage + "\n\n");
+        receviedMsg.append(chatUserName + " : " + chatMessage + "\n");
         sendMsg.setText("");
         scrollView.fullScroll(View.FOCUS_DOWN);
     }

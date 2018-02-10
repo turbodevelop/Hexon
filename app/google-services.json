@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "5897916626795",
-    "firebase_url": "https://hexon-9d64k6a.firebaseio.com",
-    "project_id": "hexon-9d64k6a",
-    "storage_bucket": "hexon-9d64k6a.appspot.com"
+    "project_number": "58979166795",
+    "firebase_url": "https://hexon-9d66a.firebaseio.com",
+    "project_id": "hexon-9d66a",
+    "storage_bucket": "hexon-9d66a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:586621154795:android:9433885412138469b50a1",
+        "mobilesdk_app_id": "1:58979166795:android:94338838469b50a1",
         "android_client_info": {
           "package_name": "com.turbo.ashish.hexon"
         }
       },
       "oauth_client": [
         {
-          "client_id": "58315979166795-rcctsadvf69abn45122sdute2nl40vo6me7l.apps.googleusercontent.com",
+          "client_id": "58979166795-rcctsadvf69abn2sdute2nl40vo6me7l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.turbo.ashish.hexon",
-            "certificate_hash": "af6379538343441f2e014135454k61498813a8a413827de1a"
+            "certificate_hash": "af6379538343441f2e014498813a8a413827de1a"
           }
         },
         {
-          "client_id": "58979166795-b79dojhjv4b4lvko45432164gk6lgbfff46r8rh.apps.googleusercontent.com",
+          "client_id": "58979166795-b79dojhjv4b4lvkoggk6lgbfff46r8rh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIza8SyA3rKSUzRJ2ND8UcfpKwbhbjKY4O_OtCBicecuJI"
+          "current_key": "AIzaSyA3rKSUzRJ2ND8UpKwKY4O_OtCBicecuJI"
         }
       ],
       "services": {
@@ -40,16 +40,16 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "589791665135795-b79dojhjvnmbmtgvhj4b4lvkoggk6lgbfff46r8rh.apps.googleusercontent.com",
-              "client_type": 4
+              "client_id": "58979166795-b79dojhjv4b4lvkoggk6lgbfff46r8rh.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },
         "ads_service": {
-          "status": 3
+          "status": 2
         }
       }
     }
   ],
-  "configuration_version": "2"
+  "configuration_version": "1"
 }

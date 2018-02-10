@@ -41,6 +41,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.roger.catloadinglibrary.CatLoadingView;
+import com.turbo.ashish.hexon.chat.AccountActivity;
+import com.turbo.ashish.hexon.chat.chatRoom;
 
 
 import java.util.ArrayList;
@@ -67,6 +69,9 @@ public class PhoneLogin extends AppCompatActivity {
     private TextView refOutOTPtv;
     private boolean autoOtpswitchStatus;
     private EditText refOTP1, refOTP2, refOTP3, refOTP4, refOTP5, refOTP6;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mauthListener;
+
     //Functions
     private void setupVerificationCallback(){
         CLV.show(getSupportFragmentManager(),"");
@@ -167,10 +172,35 @@ public class PhoneLogin extends AppCompatActivity {
         return true;
     }
 
+    //Automatic Login
+    @Override
+    protected void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mauthListener);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
+
+        getSupportActionBar().hide();
+
+        //Automatic Login Detection
+        mauthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null){
+                    String CurrentUserUID = firebaseAuth.getCurrentUser().getUid();
+                    String CurrentUserPhone = firebaseAuth.getCurrentUser().getPhoneNumber();
+                    Intent intent = new Intent(PhoneLogin.this,Profile.class);
+                    intent.putExtra("CurrentUserUID",CurrentUserUID);
+                    intent.putExtra("CurrentUserPhone",CurrentUserPhone);
+                    startActivity(intent);
+                }
+            }
+        };
+        mAuth = FirebaseAuth.getInstance();
 
         if (checkAndRequestPermissions()) {
         }
@@ -356,9 +386,7 @@ public class PhoneLogin extends AppCompatActivity {
                     refOTP3.setText(String.valueOf(setOTP[2]));
                     refOTP4.setText(String.valueOf(setOTP[3]));
                     refOTP5.setText(String.valueOf(setOTP[4]));
-                    Toast toast = new Toast(getApplicationContext());
-                    
-                    Toast.makeText(PhoneLogin.this,"Enter OTP Last Digit",Toast.LENGTH_LONG);
+                    refOTP6.setText(String.valueOf(setOTP[5]));
                 }else {
 
                 }

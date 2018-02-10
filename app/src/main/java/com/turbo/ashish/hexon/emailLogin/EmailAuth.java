@@ -47,14 +47,11 @@ public class EmailAuth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_auth);
 
-        //ActionBar actionBar = getSupportActionBar(); actionBar.hide(); // Hiding ActionBar
-        getSupportActionBar().hide();
         catLoading = new CatLoadingView();
         catLoading.setCancelable(false);
 
 
         // Automatic Login Detection
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

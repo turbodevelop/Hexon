@@ -50,6 +50,12 @@ public class Entry extends AppCompatActivity {
                 startActivity(new Intent(Entry.this,PhoneLogin.class));
             }
         });
+        findViewById(R.id.idProfileBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Entry.this,Profile.class));
+            }
+        });
     }
 }
 class MyFirebaseIdServices extends FirebaseInstanceIdService {
