@@ -9,7 +9,7 @@
     tools:context="com.turbo.ashish.hexon.emailLogin.EmailAuth">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/textInputLayout1"
         android:layout_width="272dp"
         android:layout_height="59dp"
         android:layout_marginEnd="8dp"
@@ -67,7 +67,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColorLink="#FF3649AE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +110,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"

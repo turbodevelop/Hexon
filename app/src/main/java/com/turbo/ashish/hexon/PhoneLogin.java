@@ -38,14 +38,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
+import com.google.firebase.database.DatabaseReference;
+
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.turbo.ashish.hexon.chat.AccountActivity;
 import com.turbo.ashish.hexon.chat.chatRoom;
 
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -121,6 +123,7 @@ public class PhoneLogin extends AppCompatActivity {
 
 
     }
+    /*
     private void requestOTPslider(){
         DialogPlus dialog = DialogPlus.newDialog(this)
                 .setContentHolder(new ViewHolder(R.layout.custom_otp_dialog))
@@ -139,7 +142,7 @@ public class PhoneLogin extends AppCompatActivity {
                 .setExpanded(true).setGravity(Gravity.TOP)
                 .create();
         dialog.show();
-    }
+    }*/
     private void separeteCountryAmbiguty(){
         for (int i=0; i<countryCodeandname.length;i++){
             if (i%2 == 0){
@@ -191,12 +194,14 @@ public class PhoneLogin extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
-                    String CurrentUserUID = firebaseAuth.getCurrentUser().getUid();
-                    String CurrentUserPhone = firebaseAuth.getCurrentUser().getPhoneNumber();
+
                     Intent intent = new Intent(PhoneLogin.this,Profile.class);
-                    intent.putExtra("CurrentUserUID",CurrentUserUID);
-                    intent.putExtra("CurrentUserPhone",CurrentUserPhone);
+                    intent.putExtra("CurrentUserUID",firebaseAuth.getCurrentUser().getUid());
+                    intent.putExtra("CurrentUserPhone",firebaseAuth.getCurrentUser().getPhoneNumber());
+                    intent.putExtra("UserExist",true);
                     startActivity(intent);
+                }else {
+
                 }
             }
         };

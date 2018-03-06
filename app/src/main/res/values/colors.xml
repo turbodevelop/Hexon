@@ -6,5 +6,7 @@
     <color name="custColViolat">#FF5E278D</color>
     <color name="custFloatEditTextCol">#FF9849DA</color>
     <color name="custColtransparante">#00bebdbf</color>
+    <color name="profileColPrimaryDark">#FFE1B33F</color>
+    <color name="profileColPrimary">#FFE15F3F</color>
 
 </resources>
