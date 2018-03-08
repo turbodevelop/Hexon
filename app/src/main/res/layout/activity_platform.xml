@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.turbo.ashish.hexon.Platform">
+
+    <FrameLayout
+        android:id="@+id/idFrameContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/idBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/WHITE"
+        android:foreground="?attr/selectableItemBackground"
+        app:itemIconTint="@color/deepViolate"
+        app:itemTextColor="@color/deepViolate"
+        app:menu="@menu/navigation"
+        >
+
+    </android.support.design.widget.BottomNavigationView>
+
+</android.support.design.widget.CoordinatorLayout>

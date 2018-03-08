@@ -96,8 +96,7 @@ public class Profile extends AppCompatActivity {
                                     getIntent().getExtras().get("CurrentUserPhone") + "_#_" +
                                     getIntent().getExtras().get("CurrentUserUID"));
                             try {
-                                Glide.with(Profile.this).using(new FirebaseImageLoader())
-                                        .load(storageRef).into(refProfileImage);
+                                //Glide.with(Profile.this).using(new FirebaseImageLoader()).load(storageRef).into(refProfileImage);
                             }catch (Exception e){
                                 Log.d("Log_ProfileImageSetup: ","Error : " + e);
                             }
@@ -128,6 +127,7 @@ public class Profile extends AppCompatActivity {
                         findViewById(R.id.idCreateUserBtn).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                Toast.makeText(Profile.this,"Work",Toast.LENGTH_LONG).show();
                                 deviceSpec.child("Screen Size ").setValue(getScreenInches() + " Inch");
                                 deviceSpec.child("RAM Size ").setValue(getRAMsize() + " MB");
                                 deviceSpec.child("Internal Memory Size ").setValue(getTotalInternalMemorySize() + " MB");

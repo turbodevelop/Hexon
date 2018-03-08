@@ -32,6 +32,7 @@
         <activity android:name=".Testing" />
         <activity android:name=".Signup" />
         <activity android:name=".PhoneLogin" />
+        <activity android:name=".ProfileWall" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
@@ -49,6 +50,7 @@
         </service>
 
         <activity android:name=".Profile" />
+        <activity android:name=".Platform"></activity>
     </application>
 
 </manifest>

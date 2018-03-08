@@ -2,18 +2,23 @@ package com.turbo.ashish.hexon;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +26,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
+//import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -78,6 +85,18 @@ public class ProfileWall extends AppCompatActivity {
             }catch (Exception e) {            }
         }
     }*/
+    private void collapsingToolbarLayout(){
+        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.idcollapsbarlayout);
+        AppBarLayout appBarLayout = findViewById(R.id.idProfileWallappbar);
+        collapsingToolbarLayout.setTitle(CurrentUserPhone);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.WHITE));
+        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        Toolbar toolbar = findViewById(R.id.idtoolbar);
+        //setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+
+    }
     private static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
                 .getHeight(), Bitmap.Config.ARGB_8888);
@@ -101,6 +120,8 @@ public class ProfileWall extends AppCompatActivity {
     }
     private void setProfileImage(){
         profileImage = findViewById(R.id.idImageViewCollapsingToolbarLayout);
+        profileImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -110,6 +131,8 @@ public class ProfileWall extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() != null){
                     CurrentUserID = firebaseAuth.getCurrentUser().getUid();
                     CurrentUserPhone = firebaseAuth.getCurrentUser().getPhoneNumber();
+
+                    collapsingToolbarLayout();
 
                     try {
                         StorageReference storageRef = storageReference.child("Users/Profile Pictures/" +

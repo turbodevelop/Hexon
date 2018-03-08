@@ -19,12 +19,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.turbo.ashish.hexon.DragonEncryption;
 import com.turbo.ashish.hexon.R;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import android.support.v7.app.ActionBar;
+
 
 public class chatRoom extends AppCompatActivity {
 
@@ -34,12 +36,16 @@ public class chatRoom extends AppCompatActivity {
     EditText sendMsg;
     ScrollView scrollView;
     private ListView lv;
+    private String EncryptionKey = "ashish485wedsasd";
+    DragonEncryption.MessageEncrypt.AES cryptoAES = new DragonEncryption.MessageEncrypt.AES();
 
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        //Log.d("Delta",cryptoAES.encrypt("12345678","Work"))
 
         receviedMsg = findViewById(R.id.idReceviedMsg);
         sendMsg = findViewById(R.id.idTypeMsg);
@@ -61,7 +67,12 @@ public class chatRoom extends AppCompatActivity {
                 DatabaseReference childRoot = rootRoomName.push();
                 Map<String,Object> map = new HashMap<>();
                 map.put("name", userName);
-                map.put("message", sendMsg.getText().toString());
+                try {
+                    map.put("message", cryptoAES.encrypt(EncryptionKey, sendMsg.getText().toString()));
+                }catch (Exception e){
+
+                }
+
                 childRoot.updateChildren(map);
                 scrollView.fullScroll(View.FOCUS_DOWN);
             }
@@ -104,7 +115,14 @@ public class chatRoom extends AppCompatActivity {
     private void update_message(DataSnapshot dataSnapshot) {
         chatUserName = (String) dataSnapshot.child("name").getValue();
         chatMessage = (String) dataSnapshot.child("message").getValue();
-        receviedMsg.append(chatUserName + " : " + chatMessage + "\n");
+        String decryptedMsg = null;
+        try{
+            decryptedMsg = cryptoAES.decrypt(EncryptionKey,chatMessage);
+        }catch (Exception e){
+            Log.d("Error_Decryption","");
+        }
+
+        receviedMsg.append(chatUserName + " : " + decryptedMsg + "\n");
         sendMsg.setText("");
         scrollView.fullScroll(View.FOCUS_DOWN);
     }

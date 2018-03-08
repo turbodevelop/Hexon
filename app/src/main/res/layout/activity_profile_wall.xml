@@ -9,26 +9,28 @@
     android:background="#ededed">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_height="230dp"
+        android:id="@+id/idProfileWallappbar"
+        android:layout_height="238dp"
         android:layout_width="match_parent" >
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsbarlayout"
+            android:id="@+id/idcollapsbarlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
-            app:title="Working"
-            app:expandedTitleMarginStart="48dp"
+            app:contentScrim="?attr/colorAccent"
+            app:expandedTitleMarginStart="20dp"
+            app:expandedTitleMarginBottom="20dp"
             app:expandedTitleMarginEnd="64dp">
             <ImageView
                 android:id="@+id/idImageViewCollapsingToolbarLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbarid"
+                android:id="@+id/idtoolbar"
                 app:layout_collapseMode="pin"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/custColtransparante">
 
             </android.support.v7.widget.Toolbar>
 

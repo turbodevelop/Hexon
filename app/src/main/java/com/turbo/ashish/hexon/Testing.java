@@ -33,11 +33,11 @@ public class Testing extends AppCompatActivity {
         final String text = "hiDear Ok";
         final String key = "ashish485wedsasd";
 
-        Log.d("CRYPTO-TEST", "plain: " + text);
         findViewById(R.id.idClick).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Testing.this,ProfileWall.class));
+                startActivity(new Intent(Testing.this,Platform.class));
+
             }
         });
     }

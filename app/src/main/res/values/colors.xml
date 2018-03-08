@@ -8,5 +8,13 @@
     <color name="custColtransparante">#00bebdbf</color>
     <color name="profileColPrimaryDark">#FFE1B33F</color>
     <color name="profileColPrimary">#FFE15F3F</color>
+    <color name="WHITE">#FFFFFFFF</color>
+    <color name="BLACK">#FF000000</color>
+    <color name="RED">#fe485a</color>
+    <color name="bottomNavPrimary">#7b4bff</color>
+    <color name="bottomNavPrimaryDark">#6539ba</color>
+    <color name="bottomNavAccent">#FF4081</color>
+    <color name="bgBottomNavigation">#fe485a</color>
+    <color name="deepViolate">#7a00c6</color>
 
 </resources>

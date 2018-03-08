@@ -123,26 +123,6 @@ public class PhoneLogin extends AppCompatActivity {
 
 
     }
-    /*
-    private void requestOTPslider(){
-        DialogPlus dialog = DialogPlus.newDialog(this)
-                .setContentHolder(new ViewHolder(R.layout.custom_otp_dialog))
-                .setContentHeight(150)
-                .setPadding(100,70,0,-30)
-                .setMargin(18,0,18,0)
-                .setExpanded(true).setGravity(Gravity.TOP)
-                .create();
-        dialog.show();
-    }
-    private void chooseCountryDialog(){
-        DialogPlus dialog = DialogPlus.newDialog(this)
-                .setContentHeight(150)
-                .setPadding(100,70,0,-30)
-                .setMargin(18,0,18,0)
-                .setExpanded(true).setGravity(Gravity.TOP)
-                .create();
-        dialog.show();
-    }*/
     private void separeteCountryAmbiguty(){
         for (int i=0; i<countryCodeandname.length;i++){
             if (i%2 == 0){
@@ -182,7 +162,7 @@ public class PhoneLogin extends AppCompatActivity {
         mAuth.addAuthStateListener(mauthListener);
     }
 
-    @Override
+    @Override                                                   //Main
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
@@ -194,14 +174,9 @@ public class PhoneLogin extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
-
-                    Intent intent = new Intent(PhoneLogin.this,Profile.class);
-                    intent.putExtra("CurrentUserUID",firebaseAuth.getCurrentUser().getUid());
-                    intent.putExtra("CurrentUserPhone",firebaseAuth.getCurrentUser().getPhoneNumber());
-                    intent.putExtra("UserExist",true);
-                    startActivity(intent);
+                    startActivity(new Intent(PhoneLogin.this,AccountActivity.class));
                 }else {
-
+                    startActivity(new Intent(PhoneLogin.this,Profile.class));
                 }
             }
         };

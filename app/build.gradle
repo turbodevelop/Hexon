@@ -33,7 +33,7 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0' //FirebaseCore
     //Libraries
     compile 'com.google.firebase:firebase-database:11.8.0' //Firebase Database
-    compile 'com.google.firebase:firebase-crash:11.8.0' //Firebase Crash Report
+    //compile 'com.google.firebase:firebase-crash:11.8.0' //Firebase Crash Report
     compile 'com.google.firebase:firebase-auth:11.8.0' //Firebase Authentication
     compile 'com.google.firebase:firebase-messaging:11.8.0' //Firebase Cloud Messaging
     compile 'com.google.firebase:firebase-storage:11.8.0' //Firebase Storage
