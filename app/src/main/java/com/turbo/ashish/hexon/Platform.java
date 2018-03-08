@@ -29,6 +29,7 @@ public class Platform extends AppCompatActivity {
         setContentView(R.layout.activity_platform);
 
         fragmentContainer = findViewById(R.id.idFrameContainer);
+        getSupportActionBar().hide();
 
         toolbar = getSupportActionBar();
         BottomNavigationView navigation = findViewById(R.id.idBottomNav);

@@ -36,7 +36,7 @@ public class Testing extends AppCompatActivity {
         findViewById(R.id.idClick).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Testing.this,Platform.class));
+                startActivity(new Intent(Testing.this,ProfileWall.class));
 
             }
         });

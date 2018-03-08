@@ -174,9 +174,9 @@ public class PhoneLogin extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
-                    startActivity(new Intent(PhoneLogin.this,AccountActivity.class));
+                    startActivity(new Intent(PhoneLogin.this,Platform.class));
                 }else {
-                    startActivity(new Intent(PhoneLogin.this,Profile.class));
+                    //startActivity(new Intent(PhoneLogin.this,Profile.class));
                 }
             }
         };
