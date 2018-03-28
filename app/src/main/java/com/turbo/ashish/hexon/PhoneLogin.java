@@ -1,5 +1,6 @@
 package com.turbo.ashish.hexon;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -67,7 +68,7 @@ public class PhoneLogin extends AppCompatActivity {
     private int tmp1 = -1, tmp2 = -1;
     private TextView refCountryCodeShow;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
-    private String getBroadcastSMS_OTP = new String();
+    private String getBroadcastSMS_OTP = "";
     private TextView refOutOTPtv;
     private boolean autoOtpswitchStatus;
     private EditText refOTP1, refOTP2, refOTP3, refOTP4, refOTP5, refOTP6;
@@ -118,7 +119,7 @@ public class PhoneLogin extends AppCompatActivity {
     private String getMacAddress() {
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wInfo = wifiManager.getConnectionInfo();
-        String macAddress = wInfo.getMacAddress();
+        @SuppressLint("HardwareIds") String macAddress = wInfo.getMacAddress();
         return macAddress;
 
 
@@ -333,7 +334,6 @@ public class PhoneLogin extends AppCompatActivity {
                     refautoOtpSwitch.setText("Auto OTP Detection");
                     refautoOtpSwitch.setTextColor(Color.BLACK);
                     autoOtpswitchStatus = true;
-
                 }else {
                     refautoOtpSwitch.setText("Auto OTP Detection Disabled");
                     refautoOtpSwitch.setTextColor(Color.RED);
