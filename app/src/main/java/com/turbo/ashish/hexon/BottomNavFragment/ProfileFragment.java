@@ -31,6 +31,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseStorage storage;
     private Uri filePath;
     String CurrentUserID, CurrentUserPhone;
+    View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +40,11 @@ public class ProfileFragment extends Fragment {
 
 
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        v=inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+
+        return  v;
     }
 
 }
