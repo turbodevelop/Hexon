@@ -17,18 +17,16 @@ import com.turbo.ashish.hexon.BottomNavFragment.FeedskFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.GroupsFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.ProfileFragment;
 
-
 public class Platform extends AppCompatActivity {
 
     private ActionBar toolbar;
-    private FrameLayout fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_platform);
 
-        fragmentContainer = findViewById(R.id.idFrameContainer);
+        FrameLayout fragmentContainer = findViewById(R.id.idFrameContainer);
         getSupportActionBar().hide();
 
         toolbar = getSupportActionBar();
@@ -36,13 +34,11 @@ public class Platform extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         toolbar.setTitle("Feeds");
-
-
     }
     private void inside(){
         ProfileFragment profileFragment = new ProfileFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        @SuppressLint("CommitTransaction") FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
         fragmentTransaction.addToBackStack(null);
         //fragmentTransaction.add(R.id.idFragmentContainer, profileFragment).commit();
@@ -61,7 +57,6 @@ public class Platform extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
-
 
             switch (item.getItemId()){
                 case R.id.idNavContacts:
