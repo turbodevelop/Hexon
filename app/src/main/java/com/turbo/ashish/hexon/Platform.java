@@ -25,7 +25,6 @@ public class Platform extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_platform);
-
         FrameLayout fragmentContainer = findViewById(R.id.idFrameContainer);
         getSupportActionBar().hide();
 

@@ -81,10 +81,10 @@ public class GroupsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v= inflater.inflate(R.layout.fragment_groups, container, false);
+        v = inflater.inflate(R.layout.fragment_groups, container, false);
+
         final EditText roomName = v.findViewById(R.id.idRoomEntry);
         roomList = v.findViewById(R.id.idRoomList);
-
 
         roomArrayList = new ArrayList<>();
         roomAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, roomArrayList);
