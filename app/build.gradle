@@ -1,10 +1,11 @@
+//noinspection GradleCompatible
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.turbo.ashish.hexon"
-        minSdkVersion 23
+        minSdkVersion 22
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -30,18 +31,19 @@ dependencies {
 
     //My Customs
     //noinspection GradleCompatible
-    compile 'com.google.firebase:firebase-core:12.0.1' //FirebaseCore
+    implementation 'com.google.firebase:firebase-core:12.0.1' //FirebaseCore
     //Libraries
-    compile 'com.google.firebase:firebase-database:12.0.1' //Firebase Database
+    implementation 'com.google.firebase:firebase-database:12.0.1' //Firebase Database
     //compile 'com.google.firebase:firebase-crash:11.8.0' //Firebase Crash Report
-    compile 'com.google.firebase:firebase-auth:12.0.1' //Firebase Authentication
-    compile 'com.google.firebase:firebase-messaging:12.0.1' //Firebase Cloud Messaging
-    compile 'com.google.firebase:firebase-storage:12.0.1' //Firebase Storage
-    compile 'com.firebaseui:firebase-ui-storage:0.6.0' //Firebase UI Storage
+    implementation 'com.google.firebase:firebase-auth:12.0.1' //Firebase Authentication
+    implementation 'com.google.firebase:firebase-messaging:12.0.1' //Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-storage:12.0.1' //Firebase Storage
+    implementation 'com.firebaseui:firebase-ui-storage:0.6.0' //Firebase UI Storage
     //Material Designing
-    compile 'com.android.support:design:26.1.0' //Android Material Designing Support
-    compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1' //Android CatLoadingView
+    implementation 'com.android.support:design:26.1.0' //Android Material Designing Support
+    implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1' //Android CatLoadingView
     //compile 'com.orhanobut:dialogplus:1.11@aar' //Dialogplus
     //compile 'com.theartofdev.edmodo:android-image-cropper:2.6.+' //Image Crop Library
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
