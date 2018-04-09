@@ -50,15 +50,7 @@ public class GroupsFragment extends Fragment {
     private String username;
     ListView roomList;
     View view;
-    private CatLoadingView CLV;
-    private FragmentActivity myContext;
 
-    @Override
-    public void onAttach(Activity activity) {
-        myContext = (FragmentActivity) activity;
-        super.onAttach(activity);
-    }
-    private FragmentManager supportFragmentManager = myContext.getSupportFragmentManager(); //If using fragments from support v4
 
     //Functions
     private void exitApplication(){
@@ -120,7 +112,6 @@ public class GroupsFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Iterator iterator = dataSnapshot.getChildren().iterator();
-                CLV.show(supportFragmentManager,""); //Show CatLoadingView
                 Iterator iterator = dataSnapshot.child("Groups").getChildren().iterator();
                 Set<String> set = new HashSet<>();
                 while (iterator.hasNext()){
@@ -129,7 +120,6 @@ public class GroupsFragment extends Fragment {
                 roomArrayList.clear();
                 roomArrayList.addAll(set);
                 roomList.setAdapter(roomAdapter);
-                CLV.dismiss();
             }
 
             @Override

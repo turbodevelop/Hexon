@@ -1,6 +1,7 @@
 package com.turbo.ashish.hexon;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
@@ -33,6 +34,7 @@ public class Platform extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         toolbar.setTitle("Feeds");
+        ContentResolver resolver = getContentResolver();
     }
     private void inside(){
         ProfileFragment profileFragment = new ProfileFragment();
