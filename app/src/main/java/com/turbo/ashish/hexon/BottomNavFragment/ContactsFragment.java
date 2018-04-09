@@ -33,21 +33,18 @@ import static com.turbo.ashish.hexon.PhoneLogin.REQUEST_ID_MULTIPLE_PERMISSIONS;
 
 public class ContactsFragment extends Fragment {
 
-    public ContactsFragment() {
+    public ContactsFragment() {                                                                     //Constructor
         // Required empty public constructor
     }
 
-    private View view;
-    private String ContactsList = null;
-    private ListView refContactsListView;
-    ArrayList<String> ContactsArray;
+    private ArrayList<String> ContactsArray;
 
 
     @Override                                                                                       //OnCreate
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_contacts, container, false);
+        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
         try {
             ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS);    //Peremission
             LoadContacts();                                                                         //LoadContacts
@@ -55,10 +52,9 @@ public class ContactsFragment extends Fragment {
             Log.d("SecurityException", String.valueOf(exceptionDetails));
         }
         //Set Contacts To ListView
-        String[] work = {"Work 1","Work 2","Work 3","Work 4"};
-        refContactsListView = view.findViewById(R.id.idContactsListView);
+        ListView refContactsListView = view.findViewById(R.id.idContactsListView);
         ArrayAdapter<String> ContactsAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,ContactsArray);
+                android.R.layout.simple_list_item_1,ContactsArray);                                 //ArrayAdapter
         refContactsListView.setAdapter((ListAdapter) ContactsAdapter);
         return view;
     }
@@ -91,7 +87,6 @@ public class ContactsFragment extends Fragment {
                 }
             }
         }if (cursor != null) cursor.close();
-        ContactsList = builder.toString();
     }
     private void exitApplication(){
         getActivity().finish();
