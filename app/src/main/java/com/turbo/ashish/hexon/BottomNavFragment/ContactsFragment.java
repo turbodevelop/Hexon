@@ -1,6 +1,5 @@
 package com.turbo.ashish.hexon.BottomNavFragment;
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -38,7 +37,6 @@ public class ContactsFragment extends Fragment {
     }
 
     private ArrayList<String> ContactsArray;
-
 
     @Override                                                                                       //OnCreate
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,12 +86,4 @@ public class ContactsFragment extends Fragment {
             }
         }if (cursor != null) cursor.close();
     }
-    private void exitApplication(){
-        getActivity().finish();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
 }

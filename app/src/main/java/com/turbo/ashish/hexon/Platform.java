@@ -1,11 +1,16 @@
 package com.turbo.ashish.hexon;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,39 +23,65 @@ import com.turbo.ashish.hexon.BottomNavFragment.FeedskFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.GroupsFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.ProfileFragment;
 
+import java.util.ArrayList;
+
 public class Platform extends AppCompatActivity {
 
     private ActionBar toolbar;
-
+    protected ArrayList<String> allContacts;                                                        //AllContactsArrayList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_platform);
-        FrameLayout fragmentContainer = findViewById(R.id.idFrameContainer);
+//        FrameLayout fragmentContainer = findViewById(R.id.idFrameContainer);
         getSupportActionBar().hide();
-
         toolbar = getSupportActionBar();
         BottomNavigationView navigation = findViewById(R.id.idBottomNav);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         toolbar.setTitle("Feeds");
-        ContentResolver resolver = getContentResolver();
+
+        ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);          //Peremission
+        CoreHub getCore = new CoreHub();
+//        allContacts = getCore.getDeviceContacts();                                                  //RequestAllDeviceContacts
+//        Log.d("Delta", String.valueOf(allContacts.size()));
+//        getContactList();
+
     }
-    private void inside(){
-        ProfileFragment profileFragment = new ProfileFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        @SuppressLint("CommitTransaction") FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
-        fragmentTransaction.addToBackStack(null);
-        //fragmentTransaction.add(R.id.idFragmentContainer, profileFragment).commit();
+    private void getContactList() {
+        ContentResolver cr = getContentResolver();
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+                null, null, null, null);
+
+        if ((cur != null ? cur.getCount() : 0) > 0) {
+            while (cur != null && cur.moveToNext()) {
+                String id = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID));
+                String name = cur.getString(cur.getColumnIndex(
+                        ContactsContract.Contacts.DISPLAY_NAME));
+
+                if (cur.getInt(cur.getColumnIndex(
+                        ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
+                    Cursor pCur = cr.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{id}, null);
+                    while (pCur.moveToNext()) {
+                        String phoneNo = pCur.getString(pCur.getColumnIndex(
+                                ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        Log.i("Delta", "Name: " + name);
+                        Log.i("Delta", "Phone Number: " + phoneNo);
+                    }
+                    pCur.close();
+                }
+            }
+        }
+        if(cur!=null){
+            cur.close();
+        }
+
     }
-    private void setFragment(Fragment f){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
-        ft.replace(R.id.idFrameContainer, f);
-        ft.commit();
-    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -71,6 +102,7 @@ public class Platform extends AppCompatActivity {
                     return true;
 
                 case R.id.idNavGroups:
+
                     toolbar.setTitle("Groups");
                     ft.replace(R.id.idFrameContainer,new GroupsFragment(), "Groups Fragment").commit();
                     return true;

@@ -121,8 +121,6 @@ public class PhoneLogin extends AppCompatActivity {
         WifiInfo wInfo = wifiManager.getConnectionInfo();
         @SuppressLint("HardwareIds") String macAddress = wInfo.getMacAddress();
         return macAddress;
-
-
     }
     private void separeteCountryAmbiguty(){
         for (int i=0; i<countryCodeandname.length;i++){

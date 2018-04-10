@@ -30,14 +30,13 @@ import android.support.v7.app.ActionBar;
 
 public class chatRoom extends AppCompatActivity {
 
-    DatabaseReference rootRoomName;
-    String roomName, userName;
-    TextView receviedMsg;
-    EditText sendMsg;
-    ScrollView scrollView;
-    private ListView lv;
+    private DatabaseReference rootRoomName;
+    private String roomName, userName;
+    private TextView receviedMsg;
+    private EditText sendMsg;
+    private ScrollView scrollView;
     private String EncryptionKey = "ashish485wedsasd";
-    DragonEncryption.MessageEncrypt.AES cryptoAES = new DragonEncryption.MessageEncrypt.AES();
+    private DragonEncryption.MessageEncrypt.AES cryptoAES = new DragonEncryption.MessageEncrypt.AES();
 
     @SuppressLint("WrongConstant")
     @Override
