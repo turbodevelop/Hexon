@@ -31,7 +31,7 @@ import android.support.v7.app.ActionBar;
 public class chatRoom extends AppCompatActivity {
 
     private DatabaseReference rootRoomName;
-    private String roomName, userName;
+    private String roomName,userName;
     private TextView receviedMsg;
     private EditText sendMsg;
     private ScrollView scrollView;
@@ -69,6 +69,9 @@ public class chatRoom extends AppCompatActivity {
                 try {
                     map.put("message", cryptoAES.encrypt(EncryptionKey, sendMsg.getText().toString()));
                 }catch (Exception e){
+                    //
+
+
 
                 }
 
