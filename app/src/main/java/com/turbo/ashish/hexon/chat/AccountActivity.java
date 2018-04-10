@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -80,7 +81,7 @@ public class AccountActivity extends AppCompatActivity {
         roomArrayList = new ArrayList<>();
         roomAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, roomArrayList);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        username = "Ashish";//(String) getIntent().getExtras().get("CurrentUserPhone");
+        username = "Work"; //(String) getIntent().getExtras().get("CurrentUserPhone");
 
         findViewById(R.id.idEntryBtn).setOnClickListener(new View.OnClickListener() {
             @Override

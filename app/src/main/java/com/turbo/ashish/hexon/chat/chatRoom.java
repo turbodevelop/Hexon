@@ -55,6 +55,7 @@ public class chatRoom extends AppCompatActivity {
         roomName = getIntent().getExtras().get("Room_Name").toString();
         userName = getIntent().getExtras().get("User_Name").toString();
 
+
         setTitle(roomName);
 
         rootRoomName = FirebaseDatabase.getInstance().getReference().getRoot().child("Groups").child(roomName);
@@ -70,9 +71,6 @@ public class chatRoom extends AppCompatActivity {
                     map.put("message", cryptoAES.encrypt(EncryptionKey, sendMsg.getText().toString()));
                 }catch (Exception e){
                     //
-
-
-
                 }
 
                 childRoot.updateChildren(map);

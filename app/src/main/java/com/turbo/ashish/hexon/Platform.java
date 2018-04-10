@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.turbo.ashish.hexon.BottomNavFragment.ContactsFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.FeedskFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.GroupsFragment;
@@ -29,10 +30,33 @@ public class Platform extends AppCompatActivity {
 
     private ActionBar toolbar;
     protected ArrayList<String> allContacts;                                                        //AllContactsArrayList
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mauthListener;
+    private String CurrentUserID, CurrentUserPhone;
+    //Auto Detection
+    @Override
+    protected void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mauthListener);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_platform);
+
+        //Automatic Available User Detection
+        mAuth = FirebaseAuth.getInstance();
+        mauthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null){
+                    CurrentUserID = firebaseAuth.getCurrentUser().getUid();
+                    CurrentUserPhone = firebaseAuth.getCurrentUser().getPhoneNumber();
+                    Log.d("Delta", CurrentUserID + CurrentUserPhone);
+                }
+            }
+        };
+
 //        FrameLayout fragmentContainer = findViewById(R.id.idFrameContainer);
         getSupportActionBar().hide();
         toolbar = getSupportActionBar();
@@ -45,6 +69,7 @@ public class Platform extends AppCompatActivity {
 //        allContacts = getCore.getDeviceContacts();                                                  //RequestAllDeviceContacts
 //        Log.d("Delta", String.valueOf(allContacts.size()));
 //        getContactList();
+//
 
     }
     private void getContactList() {

@@ -94,7 +94,7 @@ public class GroupsFragment extends Fragment {
         roomArrayList = new ArrayList<>();
         roomAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, roomArrayList);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        username = "Ashish";//(String) getIntent().getExtras().get("CurrentUserPhone");
+        username = "asd";//(String) getIntent().getExtras().get("CurrentUserPhone");
 
         view.findViewById(R.id.idEntryBtn).setOnClickListener(new View.OnClickListener() {
             @Override
