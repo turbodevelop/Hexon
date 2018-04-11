@@ -32,7 +32,7 @@ public class Platform extends AppCompatActivity {
     protected ArrayList<String> allContacts;                                                        //AllContactsArrayList
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mauthListener;
-    private String CurrentUserID, CurrentUserPhone;
+    public static String CurrentUserID, CurrentUserPhone;
     //Auto Detection
     @Override
     protected void onStart(){
@@ -52,7 +52,6 @@ public class Platform extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() != null){
                     CurrentUserID = firebaseAuth.getCurrentUser().getUid();
                     CurrentUserPhone = firebaseAuth.getCurrentUser().getPhoneNumber();
-                    Log.d("Delta", CurrentUserID + CurrentUserPhone);
                 }
             }
         };

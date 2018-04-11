@@ -8,9 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +24,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.roger.catloadinglibrary.CatLoadingView;
+import com.turbo.ashish.hexon.Platform;
 import com.turbo.ashish.hexon.R;
 import com.turbo.ashish.hexon.chat.AccountActivity;
 import com.turbo.ashish.hexon.chat.chatRoom;
@@ -38,6 +42,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import static com.turbo.ashish.hexon.Platform.CurrentUserPhone;
 
 
 /**
@@ -50,7 +56,8 @@ public class GroupsFragment extends Fragment {
     private String username;
     ListView roomList;
     View view;
-
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mauthListener;
 
     //Functions
     private void exitApplication(){
@@ -68,20 +75,9 @@ public class GroupsFragment extends Fragment {
             iMM.hideSoftInputFromWindow(HideKeyBoardView.getWindowToken(), 0);
         }
     }
-
-    //Exit Application On Back Pressed
-   /*@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK){
-            exitApplication();
-        }
-        return super.onKeyDown(keyCode, event);
-    }*/
-
     public GroupsFragment() {
         // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,7 +90,7 @@ public class GroupsFragment extends Fragment {
         roomArrayList = new ArrayList<>();
         roomAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, roomArrayList);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        username = "asd";//(String) getIntent().getExtras().get("CurrentUserPhone");
+        username = Platform.CurrentUserPhone;//(String) getIntent().getExtras().get("CurrentUserPhone");
 
         view.findViewById(R.id.idEntryBtn).setOnClickListener(new View.OnClickListener() {
             @Override
