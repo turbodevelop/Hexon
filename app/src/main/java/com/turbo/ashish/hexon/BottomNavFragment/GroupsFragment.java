@@ -1,81 +1,48 @@
 package com.turbo.ashish.hexon.BottomNavFragment;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.roger.catloadinglibrary.CatLoadingView;
 import com.turbo.ashish.hexon.Platform;
 import com.turbo.ashish.hexon.R;
-import com.turbo.ashish.hexon.chat.AccountActivity;
 import com.turbo.ashish.hexon.chat.chatRoom;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
-import static com.turbo.ashish.hexon.Platform.CurrentUserPhone;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class GroupsFragment extends Fragment {
-    ArrayList<String> roomArrayList;
-    ArrayAdapter<String> roomAdapter;
-    DatabaseReference databaseReference;
+    private ArrayList<String> roomArrayList;
+    private ArrayAdapter<String> roomAdapter;
+    private DatabaseReference databaseReference;
     private String username;
-    ListView roomList;
-    View view;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mauthListener;
+    private ListView roomList;
+    private View view;
+    private ProgressDialog progressDialog;
+    private List<String> GroupNames;
 
-    //Functions
-    private void exitApplication(){
-        getActivity().finish();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-    private void HideKeyboard(){
-        View HideKeyBoardView = getActivity().getCurrentFocus();
-        if (HideKeyBoardView != null) {
-            InputMethodManager iMM = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            assert iMM != null;
-            iMM.hideSoftInputFromWindow(HideKeyBoardView.getWindowToken(), 0);
-        }
-    }
-    public GroupsFragment() {
+    public GroupsFragment() {                                                                       //Constructor
         // Required empty public constructor
     }
     @Override
@@ -83,39 +50,30 @@ public class GroupsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_groups, container, false);
+        simpleProcessDialog();                                                                      //ProcessDialog
 
-        final EditText roomName = view.findViewById(R.id.idRoomEntry);
         roomList = view.findViewById(R.id.idRoomList);
 
         roomArrayList = new ArrayList<>();
         roomAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, roomArrayList);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        username = Platform.CurrentUserPhone;//(String) getIntent().getExtras().get("CurrentUserPhone");
-
-        view.findViewById(R.id.idEntryBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Map<String,Object> map = new HashMap<>();
-                map.put(roomName.getText().toString(), "");
-                databaseReference.child("Groups").updateChildren(map);
-                roomName.setText("");
-                roomName.clearFocus();
-                HideKeyboard();
-
-            }
-        });
+        username = Platform.CurrentUserPhone;
+        progressDialog.show();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //Iterator iterator = dataSnapshot.getChildren().iterator();
                 Iterator iterator = dataSnapshot.child("Groups").getChildren().iterator();
                 Set<String> set = new HashSet<>();
                 while (iterator.hasNext()){
+//                    GroupNames.add(((DataSnapshot)iterator.next()).getKey());
                     set.add(((DataSnapshot)iterator.next()).getKey());
                 }
                 roomArrayList.clear();
                 roomArrayList.addAll(set);
+//                CustomAdapter customAdapter = new CustomAdapter();
                 roomList.setAdapter(roomAdapter);
+//                Log.d("Delta", String.valueOf(GroupNames.size()));
+                progressDialog.dismiss();
             }
 
             @Override
@@ -136,7 +94,6 @@ public class GroupsFragment extends Fragment {
         return view;
 
     }
-
     private void request_username() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Enter User Name");
@@ -159,5 +116,12 @@ public class GroupsFragment extends Fragment {
         });
         builder.show();
 
+    }
+    private void simpleProcessDialog(){                                                             //ProcessDialog
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading All Groups...");
+        progressDialog.setTitle("Wait Please...");
+        progressDialog.setIndeterminate(false);
+        progressDialog.setCancelable(false);
     }
 }

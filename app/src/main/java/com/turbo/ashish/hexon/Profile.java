@@ -54,11 +54,10 @@ import java.util.Date;
 
 public class Profile extends AppCompatActivity {
 
-    private ImageView refProfileImage;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private Uri filePath;
-    private EditText refGetProfileName,refGetProfileStatus;
+    private EditText refGetProfileName, refGetProfileStatus;
     private DatabaseReference databaseReference, deviceSpec;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mauthListener;
@@ -70,7 +69,7 @@ public class Profile extends AppCompatActivity {
 
     //Auto Detection
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mauthListener);
     }
@@ -85,32 +84,33 @@ public class Profile extends AppCompatActivity {
         mauthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser() != null){
+                if (firebaseAuth.getCurrentUser() != null) {
                     CurrentUserID = firebaseAuth.getCurrentUser().getUid();
                     CurrentUserPhone = firebaseAuth.getCurrentUser().getPhoneNumber();
                     isUserExist = true;
 
-                    if (isUserExist){
+                    if (isUserExist) {
                         try {
                             StorageReference storageRef = storageReference.child("Users/Profile Pictures/" +
                                     getIntent().getExtras().get("CurrentUserPhone") + "_#_" +
                                     getIntent().getExtras().get("CurrentUserUID"));
                             try {
                                 //Glide.with(Profile.this).using(new FirebaseImageLoader()).load(storageRef).into(refProfileImage);
-                            }catch (Exception e){
-                                Log.d("Log_ProfileImageSetup: ","Error : " + e);
+                            } catch (Exception e) {
+                                Log.d("Log_ProfileImageSetup: ", "Error : " + e);
                             }
-                        }catch (Exception ignored){ }
+                        } catch (Exception ignored) {
+                        }
 
                         //Database Reference
                         databaseReference = FirebaseDatabase.getInstance().getReference().getRoot()
-                                .child("Users").child( CurrentUserPhone + "_" + CurrentUserID );
+                                .child("Users").child(CurrentUserPhone + "_" + CurrentUserID);
 
                         databaseReference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                refGetProfileName.setText( dataSnapshot.child("Name").getValue().toString() );
-                                refGetProfileStatus.setText( dataSnapshot.child("Status").getValue().toString() );
+                                refGetProfileName.setText(dataSnapshot.child("Name").getValue().toString());
+                                refGetProfileStatus.setText(dataSnapshot.child("Status").getValue().toString());
                             }
 
                             @Override
@@ -121,13 +121,13 @@ public class Profile extends AppCompatActivity {
                         refGetProfileName.clearFocus();
                         deviceSpec = FirebaseDatabase.getInstance().getReference().getRoot()
                                 .child("Users")
-                                .child( CurrentUserPhone + "_" + CurrentUserID )
+                                .child(CurrentUserPhone + "_" + CurrentUserID)
                                 .child("Device Specification");
 
                         findViewById(R.id.idCreateUserBtn).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(Profile.this,"Work",Toast.LENGTH_LONG).show();
+                                Toast.makeText(Profile.this, "Work", Toast.LENGTH_LONG).show();
                                 deviceSpec.child("Screen Size ").setValue(getScreenInches() + " Inch");
                                 deviceSpec.child("RAM Size ").setValue(getRAMsize() + " MB");
                                 deviceSpec.child("Internal Memory Size ").setValue(getTotalInternalMemorySize() + " MB");
@@ -150,12 +150,12 @@ public class Profile extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 ProduceToastS("Setup Complete");
-                                                startActivity(new Intent(Profile.this,AccountActivity.class));
+                                                startActivity(new Intent(Profile.this, AccountActivity.class));
                                             }
                                         });
                             }
                         });
-                    }else {
+                    } else {
                         ProduceToastL("User Doesn't Exist");
                     }
                 }
@@ -168,7 +168,7 @@ public class Profile extends AppCompatActivity {
         setTitle("Setup your profile");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        refProfileImage = findViewById(R.id.idProfileImage);
+        ImageView refProfileImage = findViewById(R.id.idProfileImage);
         findViewById(R.id.idProfileImage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -214,9 +214,9 @@ public class Profile extends AppCompatActivity {
 
         return output;
     }
+
     private void uploadImage() {
-        if(filePath != null)
-        {
+        if (filePath != null) {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
@@ -225,35 +225,36 @@ public class Profile extends AppCompatActivity {
                     getIntent().getExtras().get("CurrentUserPhone") + "_#_" +
                     getIntent().getExtras().get("CurrentUserUID"));
             ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                        }
-                    })
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialog.dismiss();
+                }
+            })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(Profile.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Profile.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
         }
     }
+
     private void chooseImage() {
         try {/*
             CropImage.activity().setGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(4,4)
                     .start(this);*/
-        }catch (Exception e){
-            Toast.makeText(this,"Please Choose a Picture",Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Please Choose a Picture", Toast.LENGTH_LONG).show();
         }
         /*
         Intent intent = new Intent();
@@ -262,21 +263,25 @@ public class Profile extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_REQUEST);
         */
     }
-    private void ProduceToastS(String Message){
-        Toast.makeText(this,Message,Toast.LENGTH_SHORT).show();
+
+    private void ProduceToastS(String Message) {
+        Toast.makeText(this, Message, Toast.LENGTH_SHORT).show();
     }
-    private void ProduceToastL(String Message){
-        Toast.makeText(this,Message,Toast.LENGTH_LONG).show();
+
+    private void ProduceToastL(String Message) {
+        Toast.makeText(this, Message, Toast.LENGTH_LONG).show();
     }
-    private String getScreenInches(){
+
+    private String getScreenInches() {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-        double x = Math.pow(dm.widthPixels/dm.xdpi,2);
-        double y = Math.pow(dm.heightPixels/dm.ydpi,2);
-        double screenInches = Math.sqrt(x+y);
+        double x = Math.pow(dm.widthPixels / dm.xdpi, 2);
+        double y = Math.pow(dm.heightPixels / dm.ydpi, 2);
+        double screenInches = Math.sqrt(x + y);
         return String.valueOf(screenInches);
     }
-    private String getRAMsize(){
+
+    private String getRAMsize() {
         ActivityManager actManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
         actManager.getMemoryInfo(memInfo);
@@ -285,6 +290,7 @@ public class Profile extends AppCompatActivity {
         totalMemory = totalMemory / 1024;
         return String.valueOf(totalMemory);
     }
+
     private String getTotalInternalMemorySize() {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());

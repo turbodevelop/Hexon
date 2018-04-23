@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.turbo.ashish.hexon.BottomNavFragment.ContactsFragment;
+import com.turbo.ashish.hexon.BottomNavFragment.FavouritesFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.FeedskFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.GroupsFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.ProfileFragment;
@@ -62,12 +63,6 @@ public class Platform extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.idBottomNav);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         toolbar.setTitle("Feeds");
-
-        ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);          //Peremission
-        CoreHub getCore = new CoreHub();
-//        allContacts = getCore.getDeviceContacts();                                                  //RequestAllDeviceContacts
-//        Log.d("Delta", String.valueOf(allContacts.size()));
-//        getContactList();
 //
 
     }
@@ -134,6 +129,11 @@ public class Platform extends AppCompatActivity {
                 case R.id.idNavFeeds:
                     toolbar.setTitle("Feeds");
                     ft.replace(R.id.idFrameContainer, new FeedskFragment(), "Feeds Fragment").commit();
+                    return true;
+
+                case R.id.idNavFavourites:
+                    toolbar.setTitle("Favourites");
+                    ft.replace(R.id.idFrameContainer, new FavouritesFragment(), "Favourite Fragment").commit();
                     return true;
             }
             return false;

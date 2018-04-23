@@ -188,8 +188,8 @@
                 android:id="@+id/idAutoOTPswitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:paddingStart="10dp"
                 android:text="@string/auto_otp_switch"
                 tools:ignore="RtlSymmetry" />
 
@@ -199,9 +199,9 @@
                 android:layout_height="19dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:textColor="#17c112"
-                android:textAlignment="viewEnd"
                 android:paddingEnd="20dp"
+                android:textAlignment="viewEnd"
+                android:textColor="#17c112"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -102,7 +102,7 @@ public class AccountActivity extends AppCompatActivity {
                 Iterator iterator = dataSnapshot.child("Groups").getChildren().iterator();
                 Set<String> set = new HashSet<>();
                 while (iterator.hasNext()){
-                    set.add((String) ((DataSnapshot)iterator.next()).getKey());
+                    set.add(((DataSnapshot)iterator.next()).getKey());
                 }
                 roomArrayList.clear();
                 roomArrayList.addAll(set);

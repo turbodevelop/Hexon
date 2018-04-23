@@ -17,6 +17,10 @@
         android:id="@+id/idNavPerson"
         android:icon="@drawable/ic_person"
         android:title="@string/title_profile" />
+    <item
+        android:id="@+id/idNavFavourites"
+        android:icon="@drawable/ic_favourite"
+        android:title="@string/favourite" />
 
 
 

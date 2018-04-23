@@ -45,6 +45,7 @@ public class ContactsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
         try {
             ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS);    //Peremission
+            ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_CONTACTS);
             LoadContacts();                                                                         //LoadContacts
         }catch (SecurityException exceptionDetails){
             Log.d("SecurityException", String.valueOf(exceptionDetails));
@@ -53,7 +54,7 @@ public class ContactsFragment extends Fragment {
         ListView refContactsListView = view.findViewById(R.id.idContactsListView);
         ArrayAdapter<String> ContactsAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1,ContactsArray);                                 //ArrayAdapter
-        refContactsListView.setAdapter((ListAdapter) ContactsAdapter);
+        refContactsListView.setAdapter(ContactsAdapter);
         return view;
     }
     @Override
