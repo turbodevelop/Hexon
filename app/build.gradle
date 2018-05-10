@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.android.support:design:26.1.0' //Android Material Designing Support
     implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1' //Android CatLoadingView
     //compile 'com.orhanobut:dialogplus:1.11@aar' //Dialogplus
-    //compile 'com.theartofdev.edmodo:android-image-cropper:2.6.+' //Image Crop Library
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.7.+' //Image Crop Library
     implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
