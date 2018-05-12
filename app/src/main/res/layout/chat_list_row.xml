@@ -65,12 +65,6 @@
         android:textStyle="bold"
         tools:ignore="RtlHardcoded" />
 
-    <ImageView
-        android:id="@+id/idFavImgChat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        app:srcCompat="@drawable/ic_favourite_chat_row" />
+
 
 </RelativeLayout>

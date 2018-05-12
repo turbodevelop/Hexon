@@ -1,44 +1,173 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/profile_bg"
     android:clickable="true"
-    tools:context="com.turbo.ashish.hexon.BottomNavFragment.ProfileFragment" android:focusable="true">
+    android:focusable="true"
+    tools:context="com.turbo.ashish.hexon.BottomNavFragment.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/idProfileWallappbar"
-        android:layout_width="match_parent"
-        android:layout_height="238dp">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/idcollapsbarlayout"
+    <ImageView
+        android:id="@+id/idProfilePic"
+        android:layout_width="69dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="104dp"
+        android:src="@drawable/ic_person"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/idProfileName"
+        android:layout_width="172dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textColor="@color/WHITE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idProfilePic" />
+
+    <TextView
+        android:id="@+id/idProfilePhone"
+        android:layout_width="169dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Phone Number"
+        android:textAlignment="center"
+        android:textColor="@color/WHITE"
+        app:layout_constraintStart_toStartOf="@+id/idProfileName"
+        app:layout_constraintTop_toBottomOf="@+id/idProfileName" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="321dp"
+        android:layout_height="96dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idProfilePhone">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:title="@string/title_profile"
-            app:contentScrim="?attr/colorAccent"
-            app:expandedTitleMarginBottom="20dp"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="20dp"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll">
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/idImageViewCollapsingToolbarLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/idtoolbar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/custColtransparante"
-                app:layout_collapseMode="pin">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            </android.support.v7.widget.Toolbar>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        </android.support.design.widget.CollapsingToolbarLayout>
 
-    </android.support.design.widget.AppBarLayout>
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="60dp"
+                        android:layout_height="53dp"
+                        android:src="@drawable/ic_smile" />
+
+                    <TextView
+                        android:id="@+id/userstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="HI I am New Here" />
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/idProfileCardView2"
+        android:layout_width="321dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" >
+
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20dp"
+            android:drawableLeft="@drawable/ic_email"/>
+
+        <TextView
+            android:id="@+id/GroupIntersted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginTop="70dp"
+            android:drawableLeft="@drawable/ic_groups"
+            />
+    </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_option_bar"
+        app:layout_constraintBottom_toTopOf="@+id/idProfilePic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/interstedgroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/ic_option_bar"
+        app:layout_constraintBottom_toTopOf="@+id/idProfilePic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/idEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_option_dots"
+        app:layout_constraintBottom_toTopOf="@+id/idProfilePic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

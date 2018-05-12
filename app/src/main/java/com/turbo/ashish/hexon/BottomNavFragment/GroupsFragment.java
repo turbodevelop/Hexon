@@ -59,20 +59,41 @@ public class GroupsFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         username = Platform.CurrentUserPhone;
         progressDialog.show();
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Iterator iterator = dataSnapshot.child("Groups").getChildren().iterator();
+//                Set<String> set = new HashSet<>();
+//                while (iterator.hasNext()){
+////                    GroupNames.add(((DataSnapshot)iterator.next()).getKey());
+//                    set.add(((DataSnapshot)iterator.next()).getKey());
+//                }
+//                roomArrayList.clear();
+//                roomArrayList.addAll(set);
+////                CustomAdapter customAdapter = new CustomAdapter();
+//                roomList.setAdapter(roomAdapter);
+////                Log.d("Delta", String.valueOf(GroupNames.size()));
+//                progressDialog.dismiss();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterator iterator = dataSnapshot.child("Groups").getChildren().iterator();
+                Iterator iterator = dataSnapshot.child("Users")
+                        .child(Platform.CurrentUserPhone + "_" + Platform.CurrentUserID)
+                        .child("FavouriteGroups").getChildren().iterator();
                 Set<String> set = new HashSet<>();
                 while (iterator.hasNext()){
-//                    GroupNames.add(((DataSnapshot)iterator.next()).getKey());
                     set.add(((DataSnapshot)iterator.next()).getKey());
                 }
                 roomArrayList.clear();
                 roomArrayList.addAll(set);
-//                CustomAdapter customAdapter = new CustomAdapter();
                 roomList.setAdapter(roomAdapter);
-//                Log.d("Delta", String.valueOf(GroupNames.size()));
                 progressDialog.dismiss();
             }
 

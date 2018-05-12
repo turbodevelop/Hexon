@@ -110,10 +110,6 @@ public class Platform extends AppCompatActivity {
             android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
 
             switch (item.getItemId()){
-                case R.id.idNavContacts:
-                    toolbar.setTitle("Contacts");
-                    ft.replace(R.id.idFrameContainer, new ContactsFragment(), "Contacts Ftagment").commit();
-                    return true;
 
                 case R.id.idNavPerson:
                     toolbar.setTitle("Profile");
@@ -126,10 +122,6 @@ public class Platform extends AppCompatActivity {
                     ft.replace(R.id.idFrameContainer,new GroupsFragment(), "Groups Fragment").commit();
                     return true;
 
-                case R.id.idNavFeeds:
-                    toolbar.setTitle("Feeds");
-                    ft.replace(R.id.idFrameContainer, new FeedskFragment(), "Feeds Fragment").commit();
-                    return true;
 
                 case R.id.idNavFavourites:
                     toolbar.setTitle("Favourites");
