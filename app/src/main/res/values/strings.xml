@@ -36,6 +36,8 @@
     <string name="auto_otp_detection_disabled">Auto OTP Detection Disabled</string>
     <string name="favourite">Favourite</string>
     <string name="fashion">Fashion</string>
+    <string name="book">Book</string>
+    <string name="groups">Groups</string>
 
 
 </resources>

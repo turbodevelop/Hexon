@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Book"
+                android:text="@string/book"
                 android:textColor="@color/BLACK"
                 android:textSize="18sp" />
         </LinearLayout>
