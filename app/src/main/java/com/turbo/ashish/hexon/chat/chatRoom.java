@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.turbo.ashish.hexon.DragonEncryption;
+import com.turbo.ashish.hexon.Platform;
 import com.turbo.ashish.hexon.R;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class chatRoom extends AppCompatActivity {
 
 
         final String roomName = getIntent().getExtras().get("Room_Name").toString();
-        userName = getIntent().getExtras().get("User_Name").toString();
+        userName = Platform.CurrentUserPhone;
 
         setTitle(roomName);
 

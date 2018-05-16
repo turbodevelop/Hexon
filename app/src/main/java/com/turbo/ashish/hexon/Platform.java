@@ -1,27 +1,23 @@
 package com.turbo.ashish.hexon;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.turbo.ashish.hexon.BottomNavFragment.ContactsFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.FavouritesFragment;
-import com.turbo.ashish.hexon.BottomNavFragment.FeedskFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.GroupsFragment;
 import com.turbo.ashish.hexon.BottomNavFragment.ProfileFragment;
 
@@ -34,16 +30,35 @@ public class Platform extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mauthListener;
     public static String CurrentUserID, CurrentUserPhone;
+
     //Auto Detection
     @Override
     protected void onStart(){
         super.onStart();
         mAuth.addAuthStateListener(mauthListener);
     }
+    //Exit Application
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            this.finish();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_platform);
+
+        android.app.FragmentTransaction frt = getFragmentManager().beginTransaction();
+        frt.replace(R.id.idFrameContainer,new GroupsFragment(), "Groups Fragment").commit();
+
+
+
 
         //Automatic Available User Detection
         mAuth = FirebaseAuth.getInstance();
@@ -107,8 +122,8 @@ public class Platform extends AppCompatActivity {
         @SuppressLint("ResourceType")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
 
+            android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
             switch (item.getItemId()){
 
                 case R.id.idNavPerson:

@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </FrameLayout>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
     </android.support.constraint.ConstraintLayout>
 
@@ -23,10 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
-        android:foreground="?attr/selectableItemBackground"
         app:itemBackground="@color/WHITE"
         app:itemIconTint="@color/deepViolate"
         app:itemTextColor="@color/deepViolate"
-        app:menu="@menu/navigation"></android.support.design.widget.BottomNavigationView>
+        app:menu="@menu/navigation">
+
+    </android.support.design.widget.BottomNavigationView>
 
 </android.support.design.widget.CoordinatorLayout>
